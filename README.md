@@ -8,10 +8,6 @@
 
 [![npm version](https://img.shields.io/badge/version-1.0.0-green.svg?style=flat-square)](https://www.npmjs.com/package/nodetsp) [![license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE) [![Node.js ≥16.x](https://img.shields.io/badge/node-%3E=16.x-brightgreen.svg?style=flat-square)](https://nodejs.org/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
 
----
-
-![Project Screenshot](https://via.placeholder.com/800x100?text=Project+Screenshot)
-
 ## 📋 Overview
 
 **NodeTSP** is a CLI scaffolding tool that automates the setup of Node.js projects with TypeScript, ESLint, Prettier, and Git. Spend less time on boilerplate and more time writing code.
@@ -35,8 +31,8 @@ pnpm add -g nodetsp
 ## 🚀 Quick Start
 
 ```bash
-# Create a new project with defaults
-nodetsp init my-project
+# Create a new project to start the cli prompts
+nodetsp init 
 
 # Choose pnpm instead of npm
 nodetsp init my-project --package-manager pnpm
