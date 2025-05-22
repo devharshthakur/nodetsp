@@ -54,7 +54,7 @@ export async function initGit(projectPath: string): Promise<void> {
   ].join('\n');
 
   await fs.writeFile(path.join(projectPath, '.gitignore'), gitignoreContent);
-
-  // Create initial commit
-  await execa('git', ['commit', '-am', '🚀 Initial commit '], { cwd: projectPath });
+  // Add all files to staging area and then do the inital commit
+  await execa('git', ['add', '.'], { cwd: projectPath });
+  await execa('git', ['commit', '-m', '🚀 Initial commit'], { cwd: projectPath });
 }

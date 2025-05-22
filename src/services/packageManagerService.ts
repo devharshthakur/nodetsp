@@ -12,12 +12,16 @@ export type PackageManager = 'npm' | 'pnpm';
 export class PackageManagerService {
   constructor(private readonly packageManager: PackageManager) {}
 
-  getCommnad(): PackageManager {
+  getCommand(): PackageManager {
     return this.packageManager;
   }
 
   async init(cwd: string): Promise<void> {
-    await execa(this.packageManager, ['init', '-y'], { cwd });
+    if (this.packageManager === 'npm') {
+      await execa(this.packageManager, ['init', '-y'], { cwd });
+    } else if (this.packageManager === 'pnpm') {
+      await execa(this.packageManager, ['init'], { cwd });
+    }
   }
 
   async install(packages: string[], cwd: string): Promise<void> {

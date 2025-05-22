@@ -1,6 +1,10 @@
+#!/usr/bin/env node
+
 import { Command } from 'commander';
 import packageJson from '../package.json' with { type: 'json' };
-import { init } from './cmd/init.js';
+import { init } from '@/cmd/init.js';
+import { cliContext } from '@/utils/context.js';
+
 const program = new Command();
 
 program
@@ -9,9 +13,22 @@ program
   .version(packageJson.version);
 
 program
-  .command('init')
+  .command('init [name]')
   .description('Initialize a new nodejs based typescript project')
   .option('-p, --package-manager <manager>', 'package manager to use (npm or pnpm)', 'npm')
-  .action(init);
+  .option('-m, --module-system <system>', 'module system to use (esm or commonjs)', 'esm')
+  .option('-f, --folders <folders>', 'additional folders to create (comma-separated: lib,utils,config,types,tests)')
+  .option('-g, --git', 'initialize git repository')
+  .action((name, options) => {
+    cliContext.setOptions({
+      name,
+      packageManager: options.packageManager,
+      moduleSystem: options.moduleSystem,
+      folders: options.folders ? options.folders.split(',') : undefined,
+      initGit: options.git,
+    });
+
+    init();
+  });
 
 program.parse();

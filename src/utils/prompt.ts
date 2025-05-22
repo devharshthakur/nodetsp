@@ -1,5 +1,6 @@
 import inquirer from 'inquirer';
-import { PackageManager } from './packageManager.js';
+import { PackageManager } from '@/services/packageManagerService.js';
+import { cliContext } from './context.js';
 
 export interface ProjectDetails {
   projectName: string;
@@ -9,55 +10,97 @@ export interface ProjectDetails {
   packageManager: PackageManager;
 }
 
-export const prompt = {
-  async getProjectDetails(defaultPackageManager: PackageManager): Promise<ProjectDetails> {
-    return inquirer.prompt([
-      {
-        type: 'input',
-        name: 'projectName',
-        message: '🚀 What is the name of your project?',
-        default: 'my-nodetsp-app',
-        validate: (input: string) => input.trim() !== '' || 'Project name is required',
-      },
-      {
-        type: 'list',
-        name: 'packageManager',
-        message: '📦 Which package manager would you like to use?',
-        choices: [
-          { name: 'npm', value: 'npm' },
-          { name: 'pnpm', value: 'pnpm' },
-        ],
-        default: defaultPackageManager,
-      },
-      {
-        type: 'list',
-        name: 'moduleSystem',
-        message: '🔌 Which module system would you like to use?',
-        choices: [
-          { name: 'ESM (import/export with NodeNext)', value: 'esm' },
-          { name: 'CommonJS (require/exports)', value: 'commonjs' },
-        ],
-        default: 'esm',
-      },
-      {
-        type: 'checkbox',
-        name: 'folders',
-        message: '📂 Select additional folders to include in src (leave empty for none):',
-        choices: [
-          { name: 'lib - Reusable library code', value: 'lib' },
-          { name: 'utils - Utility functions', value: 'utils' },
-          { name: 'config - Configuration files', value: 'config' },
-          { name: 'types - TypeScript type definitions', value: 'types' },
-          { name: 'tests - Test files', value: 'tests' },
-        ],
-        default: [],
-      },
-      {
-        type: 'confirm',
-        name: 'initGit',
-        message: '🔰 Initialize a Git repository?',
-        default: false,
-      },
-    ]);
-  },
-};
+/**
+ * Get complete project details through interactive prompts
+ *
+ * @returns Complete project details
+ */
+export async function getProjectDetails(): Promise<ProjectDetails> {
+  // Get CLI options that were passed
+  const cliOptions = cliContext.getOptions();
+
+  let projectName = cliOptions.name;
+  if (projectName == undefined) {
+    const nameAnswer = await inquirer.prompt({
+      type: 'input',
+      name: 'projectName',
+      message: '🚀 What is the name of your project?',
+      default: 'my-nodetsp-app',
+      validate: (input: string) => input.trim() !== '' || 'Project name is required',
+    });
+    projectName = nameAnswer.projectName;
+  }
+
+  // Get package manager
+  let packageManager = cliOptions.packageManager;
+  if (packageManager == undefined) {
+    const pmAnswer = await inquirer.prompt({
+      type: 'list',
+      name: 'packageManager',
+      message: '📦 Which package manager would you like to use?',
+      choices: [
+        { name: 'npm', value: 'npm' },
+        { name: 'pnpm', value: 'pnpm' },
+      ],
+      default: 'pnpm',
+    });
+    packageManager = pmAnswer.packageManager as PackageManager;
+  }
+
+  // Get module system
+  let moduleSystem = cliOptions.moduleSystem;
+  if (moduleSystem == undefined) {
+    const msAnswer = await inquirer.prompt({
+      type: 'list',
+      name: 'moduleSystem',
+      message: '🔌 Which module system would you like to use?',
+      choices: [
+        { name: 'ESM (import/export with NodeNext)', value: 'esm' },
+        { name: 'CommonJS (require/exports)', value: 'commonjs' },
+      ],
+      default: 'esm',
+    });
+    moduleSystem = msAnswer.moduleSystem as 'commonjs' | 'esm';
+  }
+
+  // Get folders
+  let folders = cliOptions.folders;
+  if (folders == undefined) {
+    const foldersAnswer = await inquirer.prompt({
+      type: 'checkbox',
+      name: 'folders',
+      message: '📂 Select additional folders to include in src (leave empty for none):',
+      choices: [
+        { name: 'lib - Reusable library code', value: 'lib' },
+        { name: 'utils - Utility functions', value: 'utils' },
+        { name: 'config - Configuration files', value: 'config' },
+        { name: 'types - TypeScript type definitions', value: 'types' },
+        { name: 'tests - Test files', value: 'tests' },
+      ],
+      default: [],
+    });
+    folders = foldersAnswer.folders;
+  }
+
+  // Get git init preference
+  let initGit = cliOptions.initGit;
+  if (cliOptions.initGit === undefined) {
+    const gitAnswer = await inquirer.prompt({
+      type: 'confirm',
+      name: 'initGit',
+      message: '🔰 Initialize a Git repository?',
+      default: false,
+    });
+    initGit = gitAnswer.initGit;
+  }
+
+  const fetchedProjectDetails: ProjectDetails = {
+    projectName: projectName || 'my-nodetsp-app',
+    packageManager: packageManager,
+    moduleSystem: moduleSystem,
+    folders: folders || [],
+    initGit: initGit ?? false,
+  };
+
+  return fetchedProjectDetails;
+}

@@ -1,54 +1,72 @@
-# 🚀 NodeTSP
+<div align="center">
+  <img src="./assets/logo/nodetsp_dark.png" alt="NodeTSP Logo" width="400" />
+</div>
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Version](https://img.shields.io/badge/version-1.0.0-green.svg)
+# NodeTSP
 
-A CLI tool to create TypeScript projects that use Node.js as runtime.
+> **Kickstart your Node.js + TypeScript projects with zero configuration.**
+
+[![npm version](https://img.shields.io/badge/version-1.0.0-green.svg?style=flat-square)](https://www.npmjs.com/package/nodetsp) [![license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE) [![Node.js ≥16.x](https://img.shields.io/badge/node-%3E=16.x-brightgreen.svg?style=flat-square)](https://nodejs.org/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
+
+---
+
+![Project Screenshot](https://via.placeholder.com/800x100?text=Project+Screenshot)
+
+## 📋 Overview
+
+**NodeTSP** is a CLI scaffolding tool that automates the setup of Node.js projects with TypeScript, ESLint, Prettier, and Git. Spend less time on boilerplate and more time writing code.
 
 ## ✨ Features
 
-- 📦 Modern TypeScript setup with ESM support
-- 🛠️ Pre-configured ESLint and Prettier
-- 🔄 Git initialization and basic setup
+- 🚀 Full ESM & modern TypeScript support
+- 🧹 Pre-configured ESLint & Prettier for consistent style
+- 🔄 Automatic Git repository initialization
 - 📁 Customizable folder structure
-- 📝 Comprehensive scaffolding
+- 🛠️ One-command project scaffolding
 
-## 📋 Prerequisites
-
-- Node.js (>= 16.x)
-- npm or pnpm
-
-## 🚀 Installation
+## 📦 Installation
 
 ```bash
-# Using npm
 npm install -g nodetsp
-
-# Using pnpm
+# or
 pnpm add -g nodetsp
 ```
 
-## 💻 Usage
+## 🚀 Quick Start
 
 ```bash
-# Create a new TypeScript project
-nodetsp init
+# Create a new project with defaults
+nodetsp init my-project
 
-# Specify package manager
-nodetsp init --package-manager pnpm
+# Choose pnpm instead of npm
+nodetsp init my-project --package-manager pnpm
+
+# Use CommonJS and create extra folders
+nodetsp init my-project \
+  --module-system commonjs \
+  --folders utils,types \
+  --git
+
+# Non-interactive (all options in one go)
+nodetsp init my-project \
+  --package-manager pnpm \
+  --module-system esm \
+  --folders lib,utils,config,types \
+  --git
 ```
 
-## 🔧 Options
+## 📋 CLI Options
 
-| Option                            | Description                          | Default |
-| --------------------------------- | ------------------------------------ | ------- |
-| `-p, --package-manager <manager>` | Package manager to use (npm or pnpm) | npm     |
-| `-v, --version`                   | Show version number                  | -       |
-| `-h, --help`                      | Show help                            | -       |
+| Option                            | Description                                                   | Default    |
+| --------------------------------- | ------------------------------------------------------------- | ---------- |
+| `-p, --package-manager <manager>` | Package manager: `npm` or `pnpm`                              | `npm`      |
+| `-m, --module-system <system>`    | Module system: `esm` or `commonjs`                            | `commonjs` |
+| `-f, --folders <folders>`         | Comma-separated extra folders: `lib,utils,config,types,tests` | none       |
+| `-g, --git`                       | Initialize a Git repository                                   | `false`    |
+| `-v, --version`                   | Display version                                               | —          |
+| `-h, --help`                      | Show help                                                     | —          |
 
-## 📚 Project Structure
-
-When you create a new project with NodeTSP, it will generate a structure like:
+## 📂 Generated Project Structure
 
 ```
 my-project/
@@ -62,10 +80,25 @@ my-project/
 └── package.json
 ```
 
-## 🤝 Contributing
+<details>
+<summary>Example Output</summary>
 
-Contributions, issues, and feature requests are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for how to get started.
+```bash
+$ nodetsp init my-project
+✔ Creating project directory
+✔ Initializing package.json
+✔ Configuring TypeScript, ESLint & Prettier
+✔ Setting up Git repository
+✔ Installing dependencies (npm)
+🎉 Project "my-project" is ready! cd my-project && npm install
+```
 
-## 📝 License
+</details>
 
-This project is [MIT](LICENSE) licensed.
+## 👥 Contributing
+
+We welcome contributions! Please read our [Contributing Guidelines](CONTRIBUTING.md) before opening an issue or pull request.
+
+## 🔒 License
+
+This project is licensed under the [MIT License](LICENSE).
