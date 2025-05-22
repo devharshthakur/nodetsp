@@ -16,7 +16,6 @@ export interface CliOptions {
   initGit?: boolean;
 }
 
-// Singleton store for CLI options
 class CliContext {
   private static instance: CliContext;
   private options: CliOptions = {};

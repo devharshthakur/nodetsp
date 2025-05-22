@@ -32,7 +32,7 @@ pnpm add -g nodetsp
 
 ```bash
 # Create a new project to start the cli prompts
-nodetsp init 
+nodetsp init
 
 # Choose pnpm instead of npm
 nodetsp init my-project --package-manager pnpm
