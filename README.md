@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./assets/logo/nodetsp_dark.png" alt="NodeTSP Logo" width="400" />
+  <img src="./assets/nodetsp_logo_dark.png" alt="NodeTSP Logo" width="400" />
 </div>
 
 # NodeTSP
