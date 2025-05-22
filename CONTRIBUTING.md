@@ -2,6 +2,28 @@
 
 Thank you for considering contributing to NodeTSP! As a CLI tool for bootstrapping TypeScript projects, your contributions can help improve the development experience for many Node.js developers.
 
+## 🔐 Branch Management
+
+**Important: The `main` branch is read-only.** Only repository maintainers can push final changes to the main branch. Contributors should:
+
+1. Always create feature branches from the `dev` branch (which is used for active development)
+2. Develop in your feature branch (`feature/your-feature`) within your forked repository
+3. Combine and merge your changes to your forked `dev` branch before submitting a PR
+4. Create pull requests from your forked `dev` branch to the original repository's `dev` branch
+
+This creates a single, clean commit for approval (in case multiple codechanges/commits) and helps maintain stability in the main codebase.
+
+## 🧩 Role Assignment
+
+Before starting work on any feature or bug fix:
+
+1. **Always assign yourself a role** by commenting on the relevant issue
+2. If no issue exists, create one first describing the change you want to make
+3. Wait for maintainer approval before beginning significant work
+4. Discuss your implementation approach in the issue conversation
+
+This prevents duplicate efforts and ensures your contribution aligns with the project's direction.
+
 ## 🚀 Getting Started
 
 1. **Fork the repository**
@@ -19,10 +41,18 @@ Thank you for considering contributing to NodeTSP! As a CLI tool for bootstrappi
    pnpm install
    ```
 
-4. **Create a branch**
+4. **Set up your branches**
+
    ```bash
+   # Ensure you have the latest dev branch
+   git checkout dev
+   git pull origin dev
+
+   # Create your feature branch from dev
    git checkout -b feature/amazing-feature
    ```
+
+   **Important**: Always create feature branches from `dev`, not from `main`.
 
 ## 💻 Development Workflow
 
@@ -83,11 +113,12 @@ pnpm lint:fix
 
 ## 📋 Pull Request Process
 
-1. **Update documentation** if you're changing functionality
-2. **Add or update tests** for new features or bug fixes
-3. **Ensure your code follows the project's style** by running formatting and linting
-4. **Make atomic commits** with clear descriptive messages
-5. **Write a detailed PR description** explaining:
+1. **Create pull requests against the `dev` branch**, not main
+2. **Update documentation** if you're changing functionality
+3. **Add or update tests** for new features or bug fixes
+4. **Ensure your code follows the project's style** by running formatting and linting
+5. **Make atomic commits** with clear descriptive messages
+6. **Write a detailed PR description** explaining:
    - What changes you've made
    - Why you've made them
    - How they impact users
