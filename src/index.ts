@@ -2,7 +2,7 @@
 
 import { Command } from 'commander';
 import packageJson from '../package.json' with { type: 'json' };
-import { init } from '@/cmd/init.js';
+import { init } from '@/cli/init.js';
 import { cliContext } from '@/utils/context.js';
 
 const program = new Command();
@@ -15,8 +15,8 @@ program
 program
   .command('init [name]')
   .description('Initialize a new nodejs based typescript project')
-  .option('-p, --package-manager <manager>', 'package manager to use (npm or pnpm)', 'npm')
-  .option('-m, --module-system <system>', 'module system to use (esm or commonjs)', 'esm')
+  .option('-p, --package-manager <manager>', 'package manager to use (npm or pnpm)')
+  .option('-m, --module-system <system>', 'module system to use (esm or commonjs)')
   .option('-f, --folders <folders>', 'additional folders to create (comma-separated: lib,utils,config,types,tests)')
   .option('-g, --git', 'initialize git repository')
   .action((name, options) => {

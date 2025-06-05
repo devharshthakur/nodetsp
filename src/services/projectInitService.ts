@@ -176,7 +176,7 @@ export class ProjectInitializationService {
    */
   public async initialize(): Promise<void> {
     try {
-      console.log(chalk.blue('🚀 Welcome to nodetsp\n'));
+      console.log(chalk.blue('Welcome to Nodetsp CLI'));
 
       const projectDetails: ProjectDetails = await getProjectDetails();
 

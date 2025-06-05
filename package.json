@@ -16,7 +16,8 @@
     "lint:fix": "eslint . --ext .js,.ts --fix",
     "prepare": "husky",
     "test": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "local": "pnpm run build && pnpm link -g"
   },
   "keywords": [],
   "author": "Harsh Thakur",
