@@ -55,8 +55,8 @@ export async function getProjectDetails(): Promise<ProjectDetails> {
       name: 'moduleSystem',
       message: '› Which module system would you like to use?',
       choices: [
-        { name: 'ESM (import/export with NodeNext)', value: 'esm' },
-        { name: 'CommonJS (require/exports)', value: 'commonjs' },
+        { name: 'ESM', value: 'esm' },
+        { name: 'CommonJS ', value: 'commonjs' },
       ],
       default: 'esm',
     });
@@ -75,7 +75,6 @@ export async function getProjectDetails(): Promise<ProjectDetails> {
         { name: 'utils', value: 'utils' },
         { name: 'config', value: 'config' },
         { name: 'types', value: 'types' },
-        { name: 'tests', value: 'tests' },
       ],
       default: [],
     });

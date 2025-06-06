@@ -55,7 +55,6 @@ export default [
     rules: {
       ...eslintJs.configs.recommended.rules,
       ...tsPlugin.configs.recommended.rules,
-      'no-console': 'warn',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
       '@typescript-eslint/no-explicit-any': 'warn',

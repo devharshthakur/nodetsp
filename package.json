@@ -1,6 +1,6 @@
 {
   "name": "nodetsp",
-  "version": "1.0.0-beta.0",
+  "version": "1.0.0-beta.0.1",
   "description": "A cli tool to create a typescript project which uses nodejs as runtime",
   "main": "dist/index.js",
   "type": "module",
@@ -19,7 +19,6 @@
     "test:coverage": "vitest run --coverage",
     "local": "pnpm run build && pnpm link -g"
   },
-  "keywords": [],
   "author": "Harsh Thakur",
   "license": "MIT",
   "packageManager": "pnpm@10.11.0",
