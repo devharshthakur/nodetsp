@@ -4,7 +4,7 @@ Thank you for considering contributing to NodeTSP! As a CLI tool for bootstrappi
 
 ## 🔐 Branch Management
 
-**Important: The `main` branch is read-only.** Only repository maintainers can push final changes to the main branch. Contributors should:
+**Important: The **`main`** branch is read-only.** Only repository maintainers can push final changes to the main branch. Contributors should:
 
 1. Always create feature branches from the `dev` branch (which is used for active development)
 2. Develop in your feature branch (`feature/your-feature`) within your forked repository
@@ -31,7 +31,7 @@ This prevents duplicate efforts and ensures your contribution aligns with the pr
 2. **Clone your fork**
 
    ```bash
-   git clone https://github.com/your-username/nodetsp.git
+   git clone https://github.com/your-username /nodetsp.git
    cd nodetsp
    ```
 
@@ -62,9 +62,8 @@ This prevents duplicate efforts and ensures your contribution aligns with the pr
 nodetsp/
 ├── src/               # Source code
 │   ├── index.ts       # Entry point
-│   ├── cmd/           # Command implementations
+│   ├── cli/           # Command implementations
 │   └── utils/         # Utility functions and helpers
-├── test/              # Test files
 ├── dist/              # Compiled output (generated)
 └── ...                # Config files
 ```

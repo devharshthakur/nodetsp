@@ -8,7 +8,7 @@
 
 import fs from 'fs-extra';
 import path from 'path';
-import { setupReadme } from './setup/readmeSetup.js';
+import { setupReadme } from '../services/setup/readmeSetup.js';
 
 export async function createFolderStructure(
   projectPath: string,

@@ -76,20 +76,10 @@ my-project/
 └── package.json
 ```
 
-<details>
-<summary>Example Output</summary>
-
-```bash
-$ nodetsp init my-project
-✔ Creating project directory
-✔ Initializing package.json
-✔ Configuring TypeScript, ESLint & Prettier
-✔ Setting up Git repository
-✔ Installing dependencies (npm)
-🎉 Project "my-project" is ready! cd my-project && npm install
-```
-
 </details>
+
+<img width="1148" alt="Screenshot 2025-06-10 at 6 05 30 PM" src="https://github.com/user-attachments/assets/ec818b57-bde8-40e7-a284-24ec8e50c3f5" />
+
 
 ## 👥 Contributing
 

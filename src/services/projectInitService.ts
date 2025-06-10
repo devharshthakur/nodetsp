@@ -59,7 +59,6 @@ export class ProjectInitializationService {
    */
   private async validatePackageManager(details: ProjectDetails): Promise<ProjectDetails> {
     const packageManagerService = new PackageManagerService(details.packageManager);
-
     if (!(await packageManagerService.isAvailable())) {
       if (details.packageManager === 'pnpm') {
         console.log(chalk.yellow(`ℹ️ Falling back to npm as pnpm is not installed.`));
@@ -86,33 +85,33 @@ export class ProjectInitializationService {
   ): Promise<void> {
     await createTaskList([
       {
-        title: '🔍 Initializing project',
+        title: 'Initializing project...',
         task: async () => {
           await packageManagerService.init(projectPath);
         },
       },
       {
-        title: '📁 Creating folder structure',
+        title: 'Creating folder structure...',
         task: async () => {
           await this.fileSetupService.createFolderStructure(projectPath, details.folders, details.packageManager);
         },
       },
       {
-        title: '🔧 Setting up TypeScript',
+        title: 'Setting up TypeScript...',
         task: async () => {
           await this.fileSetupService.setupTypeScript(projectPath, details.moduleSystem);
           await packageManagerService.installDev(['typescript', '@types/node'], projectPath);
         },
       },
       {
-        title: '💅 Setting up Prettier',
+        title: 'Setting up Prettier...',
         task: async () => {
           await this.fileSetupService.setupPrettier(projectPath);
           await packageManagerService.installDev(['prettier'], projectPath);
         },
       },
       {
-        title: '🚦 Setting up ESLint',
+        title: 'Setting up ESLint...',
         task: async () => {
           await packageManagerService.installDev(
             ['eslint', '@typescript-eslint/eslint-plugin', '@typescript-eslint/parser', '@eslint/js'],
@@ -125,7 +124,7 @@ export class ProjectInitializationService {
       ...(details.initGit
         ? [
             {
-              title: '🔄 Initializing Git repository',
+              title: 'Initializing Git repository...',
               task: async () => {
                 await this.fileSetupService.initGit(projectPath);
               },
@@ -177,15 +176,16 @@ export class ProjectInitializationService {
   public async initialize(): Promise<void> {
     try {
       console.log(chalk.blue('Welcome to Nodetsp CLI'));
-
+      // Get project configuration from user
       const projectDetails: ProjectDetails = await getProjectDetails();
-
+      // Resolve project path
       const projectPath = path.resolve(process.cwd(), projectDetails.projectName);
+      // Validate project path and package manager
       await this.validateProjectPath(projectPath, projectDetails.projectName);
-
       const validatedDetails = await this.validatePackageManager(projectDetails);
+      // Create project structure and files
       await this.createProject(projectPath, validatedDetails);
-
+      // Display success message and next steps
       this.displaySuccessMessage(validatedDetails);
     } catch (error: unknown) {
       this.handleError(error);

@@ -1,9 +1,12 @@
 {
   "name": "nodetsp",
-  "version": "1.0.0-beta.0.1",
+  "version": "1.0.0-beta.1",
   "description": "A cli tool to create a typescript project which uses nodejs as runtime",
   "main": "dist/index.js",
   "type": "module",
+  "repository": {
+    "url": "https://github.com/devharshthakur/nodetsp.git"
+  },
   "bin": {
     "nodetsp": "dist/index.js"
   },
@@ -17,7 +20,7 @@
     "prepare": "husky",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "local": "pnpm run build && pnpm link -g"
+    "load": "pnpm run build && pnpm link -g"
   },
   "author": "Harsh Thakur",
   "license": "MIT",
@@ -35,6 +38,7 @@
     "@types/fs-extra": "^11.0.4",
     "@types/inquirer": "^9.0.8",
     "@types/node": "^22.15.20",
+    "@types/prompts": "^2.4.9",
     "@typescript-eslint/eslint-plugin": "^8.32.1",
     "@typescript-eslint/parser": "^8.32.1",
     "eslint": "^9.27.0",
