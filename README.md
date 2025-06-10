@@ -80,7 +80,6 @@ my-project/
 
 <img width="1148" alt="Screenshot 2025-06-10 at 6 05 30 PM" src="https://github.com/user-attachments/assets/ec818b57-bde8-40e7-a284-24ec8e50c3f5" />
 
-
 ## 👥 Contributing
 
 We welcome contributions! Please read our [Contributing Guidelines](CONTRIBUTING.md) before opening an issue or pull request.
