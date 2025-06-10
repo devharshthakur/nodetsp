@@ -1,6 +1,7 @@
 import inquirer from 'inquirer';
 import { PackageManager } from '@/services/packageManagerService.js';
 import { cliContext } from './context.js';
+import prompts from 'prompts';
 
 export interface ProjectDetails {
   projectName: string;
@@ -24,7 +25,7 @@ export async function getProjectDetails(): Promise<ProjectDetails> {
     const nameAnswer = await inquirer.prompt({
       type: 'input',
       name: 'projectName',
-      message: '› What is the name of your project',
+      message: 'What is the name of your project',
       default: 'my-nodetsp-app',
       validate: (input: string) => input.trim() !== '' || 'Project name is required',
     });
@@ -37,12 +38,12 @@ export async function getProjectDetails(): Promise<ProjectDetails> {
     const pmAnswer = await inquirer.prompt({
       type: 'list',
       name: 'packageManager',
-      message: '› Which package manager would you like to use?',
+      message: 'Which package manager would you like to use?',
       choices: [
         { name: 'npm', value: 'npm' },
         { name: 'pnpm', value: 'pnpm' },
       ],
-      default: 'pnpm',
+      default: 'npm',
     });
     packageManager = pmAnswer.packageManager as PackageManager;
   }
@@ -53,7 +54,7 @@ export async function getProjectDetails(): Promise<ProjectDetails> {
     const msAnswer = await inquirer.prompt({
       type: 'list',
       name: 'moduleSystem',
-      message: '› Which module system would you like to use?',
+      message: 'Which module system would you like to use?',
       choices: [
         { name: 'ESM', value: 'esm' },
         { name: 'CommonJS ', value: 'commonjs' },
@@ -69,7 +70,7 @@ export async function getProjectDetails(): Promise<ProjectDetails> {
     const foldersAnswer = await inquirer.prompt({
       type: 'checkbox',
       name: 'folders',
-      message: '› Select additional folders to include in src (leave empty for none):\n  ',
+      message: 'Select additional folders you want to include in src (leave empty for none):\n  ',
       choices: [
         { name: 'lib', value: 'lib' },
         { name: 'utils', value: 'utils' },
@@ -87,7 +88,7 @@ export async function getProjectDetails(): Promise<ProjectDetails> {
     const gitAnswer = await inquirer.prompt({
       type: 'list',
       name: 'initGit',
-      message: '› Initialize a Git repository?',
+      message: 'Initialize a Git repository?',
       choices: [
         { name: 'Yes', value: true },
         { name: 'No', value: false },
@@ -101,7 +102,7 @@ export async function getProjectDetails(): Promise<ProjectDetails> {
     projectName: projectName || 'my-nodetsp-app',
     packageManager: packageManager,
     moduleSystem: moduleSystem,
-    folders: folders || [],
+    folders: folders || [], // to make typescript happy
     initGit: initGit ?? false,
   };
 

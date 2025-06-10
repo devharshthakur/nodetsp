@@ -9,11 +9,11 @@
  */
 
 import { PackageManager } from '@/services/packageManagerService.js';
-import { initGit } from '@/utils/setup/gitSetup.js';
-import { setupPrettier } from '@/utils/setup/prettierSetup.js';
-import { setupESLint } from '@/utils/setup/eslintSetup.js';
-import { generateTsConfig } from '@/utils/setup/tsconfigSetup.js';
-import { setupReadme } from '@/utils/setup/readmeSetup.js';
+import { initGit } from '@/services/setup/gitSetup.js';
+import { setupPrettier } from '@/services/setup/prettierSetup.js';
+import { setupESLint } from '@/services/setup/eslintSetup.js';
+import { generateTsConfig } from '@/services/setup/tsconfigSetup.js';
+import { setupReadme } from '@/services/setup/readmeSetup.js';
 import { createFolderStructure as createFolders } from '@/utils/filesystem.js';
 
 export type ModuleSystem = 'commonjs' | 'esm';
