@@ -1,7 +1,3 @@
-<div align="center">
-  <img src="./assets/nodetsp_logo_dark.png" alt="NodeTSP Logo" width="400" />
-</div>
-
 # NodeTSP
 
 > **Kickstart your Node.js + TypeScript projects with zero configuration.**
