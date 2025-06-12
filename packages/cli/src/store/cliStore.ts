@@ -9,7 +9,7 @@
 import { CliArguments } from '@/types/cliArgs.js';
 
 export class CliArgsStore {
-  private cliArgs: CliArguments = {};
+  private cliArgs: CliArguments = { folders: [], initGit: false };
 
   public setArgs(args: CliArguments): void {
     this.cliArgs = args;

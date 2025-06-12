@@ -6,6 +6,10 @@
   "scripts": {
     "format": "prettier --write ."
   },
+  "files": [
+    "dist",
+    "dist/template"
+  ],
   "keywords": [],
   "author": "Harsh Thakur",
   "license": "MIT",
