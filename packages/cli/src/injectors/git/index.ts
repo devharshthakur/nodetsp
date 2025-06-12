@@ -19,13 +19,17 @@ export class GitInjector implements Injector {
     await createFile('.gitignore', gitignore);
   }
 
+  async commitGit(message: string): Promise<void> {
+    await execa('git', ['add', '.']);
+    await execa('git', ['commit', '-m', message]);
+  }
+
   async inject(): Promise<void> {
     if (!this.shouldInitGit) return;
     try {
       await execa('git', ['init']);
-      await this.createGitignore();
-      await execa('git', ['add', '.']);
-      await execa('git', ['commit', '-m', 'Initial commit']);
+      await this.createGitignore(); // create gitignore file
+      await this.commitGit('Initial commit'); // Add all files and commit
     } catch (error) {
       console.error('Failed to initialize git repository or make initial commit:', error);
     }

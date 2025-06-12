@@ -1,8 +1,8 @@
+import path from 'path';
+import fs from 'fs-extra';
 import { OptionalFolders } from '@/types/folders.js';
 import { Injector } from '@/types/injector.js';
 import { PackageManager } from '@/types/packageManager.js';
-import path from 'path';
-import fs from 'fs-extra';
 import { createFile, readFile } from '@/utils/filesystem.js';
 import { ModuleSystem } from '@/types/moduleSystem.js';
 import { fileURLToPath } from 'url';

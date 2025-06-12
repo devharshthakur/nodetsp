@@ -60,7 +60,7 @@ export async function readFile(filePath: string): Promise<string> {
 /**
  * Reads a JSON file from the filesystem
  * @param filePath - Path of the JSON file to read
- * @returns Promise<T> - Parsed JSON content of the file
+ * @returns Promise<any> - Parsed JSON content of the file
  */
 export async function readJSON<T>(filePath: string): Promise<any> {
   return await fs.readJson(filePath);
