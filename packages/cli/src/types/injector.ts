@@ -1,3 +1,3 @@
 export interface Injector {
-  inject(installDeps?: boolean): any;
+  inject(installDeps?: boolean): Promise<void>;
 }

@@ -5,10 +5,8 @@ import path from 'path';
 import fs from 'fs-extra';
 import { createFile } from '@/utils/filesystem.js';
 import { ModuleSystem } from '@/types/moduleSystem.js';
-import { execa } from 'execa';
 import { fileURLToPath } from 'url';
 import { creatFolder } from '@/utils/filesystem.js';
-import { spinner } from '@clack/prompts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -73,16 +71,6 @@ export class BaseInjector implements Injector {
     process.chdir(this.projectName);
   }
 
-  async initializeGit() {
-    if (this.shouldInitGit) {
-      try {
-        await execa('git', ['init']);
-      } catch (error) {
-        console.error('Failed to initialize git repository:', error);
-      }
-    }
-  }
-
   async createOptionalFolders() {
     await fs.ensureDir('src');
     for (const folder of this.folders) {
@@ -93,24 +81,12 @@ export class BaseInjector implements Injector {
     await createFile('src/index.ts', indexFile);
   }
 
-  async installDependencies() {
-    try {
-      await execa(this.packageManager, ['install'], { stdio: 'inherit' });
-    } catch (error) {
-      console.error('Failed to install dependencies:', error);
-    }
-  }
-
-  async inject(installDeps: boolean) {
+  async inject() {
     await this.createProjectFolder();
-    await this.initializeGit();
     await this.createOptionalFolders();
     await this.createPackageJson();
     await this.createTsConfig();
     await this.createPrettier();
     await this.createGitignore();
-    if (installDeps) {
-      await this.installDependencies();
-    }
   }
 }
