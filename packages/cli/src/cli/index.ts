@@ -85,12 +85,8 @@ export async function runCli(cliArgs: Partial<CliArguments> = {}) {
   // Initialize git
   const initGit = cliArgs.initGit
     ? cliArgs.initGit
-    : await select<boolean>({
+    : await confirm({
         message: 'Do you want to initialize a git repository here',
-        options: [
-          { value: true, label: 'Yes' },
-          { value: false, label: 'No' },
-        ],
         initialValue: false,
       });
   if (isCancel(initGit)) {
@@ -117,7 +113,7 @@ export async function runCli(cliArgs: Partial<CliArguments> = {}) {
     installDeps: installDeps as boolean,
   };
 
-  // Show spinner while scaffolding
+  // Show spinner while scaffolding and after scaffolding the project show next steps
   const s = spinner();
   s.start();
   try {
