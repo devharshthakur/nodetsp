@@ -48,3 +48,20 @@ export async function deleteFolder(folderPath: string): Promise<void> {
 export async function deleteMultipleFolders(folderPaths: string[]): Promise<void> {
   await Promise.all(folderPaths.map(path => fs.remove(path)));
 }
+
+/**
+ * Reads a file from the filesystem
+ * @param filePath - Path of the file to read
+ * @returns Promise<string> - Content of the file
+ */
+export async function readFile(filePath: string): Promise<string> {
+  return await fs.readFile(filePath, 'utf-8');
+}
+/**
+ * Reads a JSON file from the filesystem
+ * @param filePath - Path of the JSON file to read
+ * @returns Promise<T> - Parsed JSON content of the file
+ */
+export async function readJSON<T>(filePath: string): Promise<any> {
+  return await fs.readJson(filePath);
+}

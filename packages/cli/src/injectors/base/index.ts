@@ -3,10 +3,11 @@ import { Injector } from '@/types/injector.js';
 import { PackageManager } from '@/types/packageManager.js';
 import path from 'path';
 import fs from 'fs-extra';
-import { createFile } from '@/utils/filesystem.js';
+import { createFile, readFile } from '@/utils/filesystem.js';
 import { ModuleSystem } from '@/types/moduleSystem.js';
 import { fileURLToPath } from 'url';
 import { creatFolder } from '@/utils/filesystem.js';
+import { readJSON } from '@/utils/filesystem.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -34,7 +35,7 @@ export class BaseInjector implements Injector {
 
   async createPackageJson() {
     const templatePath = path.join(__dirname, '../../template/base', 'package.json');
-    const template = await fs.readJson(templatePath);
+    const template = await readJSON(templatePath);
     const packageJson = {
       ...template,
       name: this.projectName,
@@ -45,7 +46,7 @@ export class BaseInjector implements Injector {
 
   async createTsConfig() {
     const templatePath = path.join(__dirname, '../../template/base', `tsconfig.${this.moduleSystem}.json`);
-    const tsconfig = await fs.readJson(templatePath);
+    const tsconfig = await readJSON(templatePath);
     await createFile('tsconfig.json', JSON.stringify(tsconfig, null, 2));
   }
 
@@ -53,17 +54,11 @@ export class BaseInjector implements Injector {
     const prettierRcPath = path.join(__dirname, '../../template/base', '.prettierrc');
     const prettierIgnorePath = path.join(__dirname, '../../template/base', '.prettierignore');
 
-    const prettierRc = await fs.readJson(prettierRcPath);
-    const prettierIgnore = await fs.readFile(prettierIgnorePath, 'utf-8');
+    const prettierRc = await readJSON(prettierRcPath);
+    const prettierIgnore = await readFile(prettierIgnorePath);
 
     await createFile('.prettierrc', JSON.stringify(prettierRc, null, 2));
     await createFile('.prettierignore', prettierIgnore);
-  }
-
-  async createGitignore() {
-    const gitignorePath = path.join(__dirname, '../../template/base', '.gitignore');
-    const gitignore = await fs.readFile(gitignorePath, 'utf-8');
-    await createFile('.gitignore', gitignore);
   }
 
   async createProjectFolder() {
@@ -77,7 +72,7 @@ export class BaseInjector implements Injector {
       await creatFolder(path.join('src', folder), '');
     }
     const indexFilePath = path.join(__dirname, '../../template/base', 'index.ts');
-    const indexFile = await fs.readFile(indexFilePath, 'utf-8');
+    const indexFile = await readFile(indexFilePath);
     await createFile('src/index.ts', indexFile);
   }
 
@@ -87,6 +82,5 @@ export class BaseInjector implements Injector {
     await this.createPackageJson();
     await this.createTsConfig();
     await this.createPrettier();
-    await this.createGitignore();
   }
 }
