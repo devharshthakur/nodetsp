@@ -31,32 +31,40 @@ pnpm add -g nodetsp
 nodetsp init
 
 # Choose pnpm instead of npm
-nodetsp init my-project --package-manager pnpm
+nodetsp init my-project --pm pnpm
 
 # Use CommonJS and create extra folders
 nodetsp init my-project \
-  --module-system commonjs \
-  --folders utils,types \
+  --ms cjs \
+  --fd utils,types \
   --git
 
 # Non-interactive (all options in one go)
 nodetsp init my-project \
-  --package-manager pnpm \
-  --module-system esm \
-  --folders lib,utils,config,types \
+  --pm pnpm \
+  --ms esm \
+  --fd lib,utils,config,types \
   --git
 ```
 
 ## 📋 CLI Options
 
-| Option                            | Description                                                   | Default    |
-| --------------------------------- | ------------------------------------------------------------- | ---------- |
-| `-p, --package-manager <manager>` | Package manager: `npm` or `pnpm`                              | `npm`      |
-| `-m, --module-system <system>`    | Module system: `esm` or `commonjs`                            | `commonjs` |
-| `-f, --folders <folders>`         | Comma-separated extra folders: `lib,utils,config,types,tests` | none       |
-| `-g, --git`                       | Initialize a Git repository                                   | `false`    |
-| `-v, --version`                   | Display version                                               | —          |
-| `-h, --help`                      | Show help                                                     | —          |
+| Option                  | Description                                                   | Default    |
+|------------------------|---------------------------------------------------------------|------------|
+| `-p, --pm <manager>`   | Package manager: `npm` or `pnpm`                              | `npm`      |
+| `-m, --ms <system>`    | Module system: `esm` or `cjs`                                 | `esm`      |
+| `-f, --fd <folders>`   | Comma-separated extra folders: `lib,utils,config,types`        | none       |
+| `-g, --git`            | Initialize a Git repository                                   | `false`    |
+| `-v, --version`        | Display version                                               | —          |
+| `-h, --help`           | Show help                                                     | —          |
+
+> **Note:**
+> The CLI uses the following flags:
+> - `-p, --pm` for package manager (e.g., `--pm pnpm`)
+> - `-m, --ms` for module system (e.g., `--ms esm` or `--ms cjs`)
+> - `-f, --fd` for folders (e.g., `--fd lib,utils`)
+> - `-g, --git` to initialize a git repository
+> The long flags are two characters, not full words.
 
 ## 📂 Generated Project Structure
 

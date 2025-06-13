@@ -16,17 +16,17 @@ program
 program
   .command('init [name]')
   .description('Initialize a new nodejs based typescript project')
-  .option('-p, --package-manager <manager>', 'package manager to use (npm or pnpm)')
-  .option('-m, --module-system <system>', 'module system to use (esm or commonjs)')
-  .option('-f, --folders <folders>', 'additional folders to create (comma-separated: lib,utils,config,types,tests)')
+  .option('-p, --pm <manager>', 'package manager to use (npm or pnpm)')
+  .option('-m, --ms <system>', 'module system to use (esm or commonjs)')
+  .option('-f, --fd <folders>', 'additional folders to create (comma-separated: lib,utils,config,types,tests)')
   .option('-g, --git', 'initialize git repository')
   // Here cli arguments are passed(saved) in the store if provided by the users otherwise all options are shows (check runCLI)
   .action((projectName, args) => {
-    cliArgsStore.setArgs({
+    cliArgsStore.setArgs({˝
       projectName,
-      packageManager: args.packageManager,
-      moduleSystem: args.moduleSystem,
-      folders: args.folders ? args.folders.split(',') : undefined,
+      packageManager: args.pm,
+      moduleSystem: args.ms,
+      folders: args.fd ? args.fd.split(',') : undefined,
       initGit: args.git,
     });
     runCli(cliArgsStore.getArgs());

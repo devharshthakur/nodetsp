@@ -14,7 +14,7 @@
     "dev": "tsc --watch & tsc-alias --watch",
     "build": "tsc && tsc-alias",
     "format": "prettier --write .",
-    "load": "pnpm run build && pnpm link -g",
+    "load": "pnpm format && pnpm run build && pnpm link -g",
     "postbuild": "cpx \"src/template/**/*\" dist/template && cpx \"src/template/**/.*\" dist/template"
   },
   "author": "Harsh Thakur",
