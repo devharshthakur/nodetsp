@@ -4,6 +4,24 @@ import { execa } from 'execa';
 import { GitInjector } from '@/injectors/git/index.js';
 import { tasks } from '@clack/prompts';
 
+/**
+ * Scaffolds a new TypeScript project with the specified configuration options.
+ *
+ * This function orchestrates the project creation process by:
+ * 1. Creating and executing injectors for base project structure and optional services
+ * 2. Managing the installation of dependencies if requested
+ * 3. Using a task-based approach with visual feedback via @clack/prompts
+ *
+ * The scaffolding process follows this order:
+ * - Base project structure is created first (BaseInjector)
+ * - Optional services like eslint,jest/vitest are initialized then
+ * - Then Git is injected at last so all files are commited (Git injector)
+ * - Dependencies are installed if installDeps is true ( always after git injection)
+ *
+ * @param {ProjectOptions} options - Configuration options for the project
+ * @throws {Error} If dependency installation fails
+ */
+
 export async function scaffoldProject(options: ProjectOptions) {
   const { folders, packageManager, projectName, moduleSystem, initGit, installDeps } = options;
   const taskList = [

@@ -33,6 +33,9 @@ export class BaseInjector implements Injector {
     this.shouldInitGit = InitGit;
   }
 
+  /**
+   * Creates a package.json file for the project with the specified name and module system.
+   */
   async createPackageJson() {
     const templatePath = path.join(__dirname, '../../template/base', 'package.json');
     const template = await readJSON(templatePath);
@@ -44,12 +47,18 @@ export class BaseInjector implements Injector {
     await createFile('package.json', JSON.stringify(packageJson, null, 2));
   }
 
+  /**
+   * Creates a tsconfig.json file for the project based on the specified module system.
+   */
   async createTsConfig() {
     const templatePath = path.join(__dirname, '../../template/base', `tsconfig.${this.moduleSystem}.json`);
     const tsconfig = await readJSON(templatePath);
     await createFile('tsconfig.json', JSON.stringify(tsconfig, null, 2));
   }
 
+  /**
+   * Creates Prettier configuration files (.prettierrc and .prettierignore) for the project.
+   */
   async createPrettier() {
     const prettierRcPath = path.join(__dirname, '../../template/base', '.prettierrc');
     const prettierIgnorePath = path.join(__dirname, '../../template/base', '.prettierignore');
@@ -61,11 +70,17 @@ export class BaseInjector implements Injector {
     await createFile('.prettierignore', prettierIgnore);
   }
 
+  /**
+   * Creates the project folder and changes the current working directory to it.
+   */
   async createProjectFolder() {
     await fs.ensureDir(this.projectName);
     process.chdir(this.projectName);
   }
 
+  /**
+   * Creates optional folders within the src directory and initializes an index.ts file.
+   */
   async createOptionalFolders() {
     await fs.ensureDir('src');
     for (const folder of this.folders) {
@@ -76,6 +91,9 @@ export class BaseInjector implements Injector {
     await createFile('src/index.ts', indexFile);
   }
 
+  /**
+   * Injects the necessary files and configurations into the project.
+   */
   async inject() {
     await this.createProjectFolder();
     await this.createOptionalFolders();

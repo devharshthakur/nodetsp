@@ -11,6 +11,22 @@ import { intro, isCancel, multiselect, outro, select, text, confirm } from '@cla
 import { scaffoldProject } from './scaffold.js';
 import color from 'picocolors';
 
+/**
+ * This file serves as the main CLI interface for the Nodetsp tool, which helps create and scaffold TypeScript projects.
+ *
+ * Key responsibilities:
+ * - Provides an interactive command-line interface using @clack-prompts
+ * - Collects user input for project configuration including:
+ *   - Project name
+ *   - Package manager selection (npm/pnpm)
+ *   - Module system choice (ESM/CommonJS)
+ *   - Additional folder structure
+ *   - Git initialization preference
+ * - Manages project scaffolding based on user selections
+ *
+ * @module cli/index
+ */
+
 export async function runCli(cliArgs: Partial<CliArguments> = {}) {
   console.clear();
   intro(color.bgCyan('Nodetsp CLI'));
@@ -120,7 +136,6 @@ export async function runCli(cliArgs: Partial<CliArguments> = {}) {
   };
 
   // Show spinner while scaffolding and after scaffolding the project show next steps
-
   try {
     await scaffoldProject(results);
     let nextSteps = `Project "${results.projectName}" created!\n\nNext steps:\n  1. cd ${results.projectName}`;

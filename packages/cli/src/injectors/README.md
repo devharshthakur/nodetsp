@@ -1,40 +1,40 @@
-# Injectors
+# `@/injectors` Folder
 
-This section contains all the injectors for the nodetsp CLI.
+This folder contains all injector classes for the Nodetsp CLI. Injectors are responsible for setting up specific services or features (like base files, Git, etc.) in a new project.
 
-## What are Injectors here? 🤔
+## What is an Injector?
 
-- The concept here is not so similar to NestJS dependency injection. I got the inspiration from it. However, it has a different but simple meaning for our project. It just makes code organization easier and the addition of more options(services) easier.
+The term "injector" here is inspired by the concept of dependency injection in frameworks like NestJS, but it is not the same. In this project, an **injector** is a class that implements the `Injector` interface (i.e., it must have an `inject()` method). Each injector class contains a set of methods that perform various operations to set up or "inject" a particular service (such as base files, Git, etc.) into the project.
 
-- Here, an Injector adds a set of files and performs a set of operations to set up any one package/service, such as Git, ESLint, etc., in a nodetsp project.
+The key method is always `inject()`, which calls those internal methods in the correct sequence to fully set up the service. The `inject()` method is required by the `Injector` interface and acts as the entry point for the injection process.
 
-- This is how I imagine injectors here: an injector is a class which implements the **`Injector`** interface, which logically means that it should contain an `inject` method that does the actual injection of files by calling other methods. Check the `Injector` class.
+**Important:**
 
-## Important Points to Remember Before Adding Another Injector ⚠️
+- The injector itself is responsible for deciding whether to perform its injection or skip it, based on the options passed to its constructor. This means in `scaffold.ts`, all injectors are always instantiated and their `inject()` methods are called, but each injector checks the options and decides if it should actually do anything.
+- This design keeps the orchestration in `scaffold.ts` simple and delegates the logic for skipping or running to each injector.
 
-- The `base` injector injects basic setup files such as `prettier` files, `package.json`, `tsconfig.json`, etc. It should be run first before any other injector.
+### Example Injectors
 
-- The `git` injector injects Git, i.e., sets up Git, adds a `gitignore` file, and performs the `initial commit` for the project. This injector has to be called (injected) last so that the `initial commit` includes all the files of the project.
+- **Base Injector**: Sets up essential files (e.g., `package.json`, `tsconfig.json`, Prettier config, etc.). This must always be injected first, so the minimum project structure exists before any other setup.
+- **Git Injector**: Sets up Git, creates `.gitignore`, and makes the initial commit. This must always be injected last, so the initial commit contains the complete project.
+- Other injectors (e.g., for ESLint, testing, etc.) should be injected between base and git.
 
-- All the user selected options are passed to `runCli()` as props.
+## Folder Structure
 
-## How to add a injector in the project : A Basic Outline 📝
+- `base/` — Contains the BaseInjector for core project setup
+- `git/` — Contains the GitInjector for Git integration
+- (Add more folders for additional injectors/services)
 
-## Steps to Add a New Injector
+## Adding a New Injector
 
-1. [ ] Create a new folder named after the service to be injected
-2. [ ] Create `index.ts` inside the new folder
-3. [ ] Create a class with the same name as the folder/injection
-4. [ ] Implement the `Injector` interface
-5. [ ] Create setup methods for individual operations
-6. [ ] Create an `inject()` method that:
-   - [ ] Calls setup methods in sequence
-   - [ ] Handles the case when user opts out of the service
-7. [ ] In `scaffold.ts`:
-   - [ ] Create an instance of your injector class
-   - [ ] Call its `inject()` method
-   - [ ] Do not use if-else for service opt-out handling
+1. Create a new folder named after the service.
+2. Add an `index.ts` file and implement a class that implements the `Injector` interface.
+3. Implement the `inject()` method and any setup helpers. The `inject()` method should check the options passed to the constructor and decide whether to run or skip.
+4. In `scaffold.ts`, instantiate and call your injector's `inject()` method in the correct order:
+   - **Base injector first**
+   - **Other injectors next**
+   - **Git injector last**
 
-> 💡 **Tip**: Check the `git` injector implementation for handling service opt-out cases
+> **Tip:** See the `base` and `git` injectors for examples of structure, service opt-out handling, and correct ordering.
 
-> 📝 **Note**: For implementation details and examples of how to properly instantiate and use injectors, refer to the existing injector implementations in the `base` and `git`. These examples as a refrence how can you pass required properties and handle service opt-out cases.
+> **Note:** Injectors make it easy to extend the CLI with new features and keep setup logic modular and maintainable. Always ensure the base injector runs first and the git injector runs last for a correct project scaffold.
