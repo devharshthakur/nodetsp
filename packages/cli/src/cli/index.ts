@@ -7,9 +7,9 @@ import { CliArguments, ProjectOptions } from '@/types/cliArgs.js';
 import { OptionalFolders } from '@/types/folders.js';
 import { ModuleSystem } from '@/types/moduleSystem.js';
 import { PackageManager } from '@/types/packageManager.js';
-import { intro, isCancel, multiselect, outro, select, text, spinner, confirm } from '@clack/prompts';
-import color from 'picocolors';
+import { intro, isCancel, multiselect, outro, select, text, confirm } from '@clack/prompts';
 import { scaffoldProject } from './scaffold.js';
+import color from 'picocolors';
 
 export async function runCli(cliArgs: Partial<CliArguments> = {}) {
   console.clear();
@@ -104,6 +104,12 @@ export async function runCli(cliArgs: Partial<CliArguments> = {}) {
     process.exit(0);
   }
 
+  /**
+   * Creates a type-safe object containing all the project configuration options
+   * gathered from CLI arguments or user prompts. This object will be used to
+   * scaffold the project with the specified settings.
+   *
+   */
   const results: ProjectOptions = {
     projectName: projectName as string,
     packageManager: packageManager as PackageManager,
@@ -114,12 +120,10 @@ export async function runCli(cliArgs: Partial<CliArguments> = {}) {
   };
 
   // Show spinner while scaffolding and after scaffolding the project show next steps
-  const s = spinner();
-  s.start();
+
   try {
     await scaffoldProject(results);
-    s.stop('Project scaffolded successfully!');
-    let nextSteps = `✅ Project "${results.projectName}" created!\n\nNext steps:\n  1. cd ${results.projectName}`;
+    let nextSteps = `Project "${results.projectName}" created!\n\nNext steps:\n  1. cd ${results.projectName}`;
     if (!results.installDeps) {
       nextSteps += `\n  2. ${results.packageManager} install`;
       nextSteps += `\n  3. ${results.packageManager} run build`;
@@ -131,7 +135,6 @@ export async function runCli(cliArgs: Partial<CliArguments> = {}) {
     nextSteps += `\n\nHappy coding! 🚀`;
     outro(nextSteps);
   } catch (err) {
-    s.stop('❌ Failed to scaffold project.');
     console.error('Error during scaffolding:', err);
     outro('Something went wrong during scaffolding. Please check the logs.');
   }
