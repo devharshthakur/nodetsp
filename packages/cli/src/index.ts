@@ -22,7 +22,7 @@ program
   .option('-g, --git', 'initialize git repository')
   // Here cli arguments are passed(saved) in the store if provided by the users otherwise all options are shows (check runCLI)
   .action((projectName, args) => {
-    cliArgsStore.setArgs({˝
+    cliArgsStore.setArgs({
       projectName,
       packageManager: args.pm,
       moduleSystem: args.ms,
