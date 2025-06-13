@@ -15,7 +15,8 @@
     "build": "tsc && tsc-alias",
     "format": "prettier --write .",
     "load": "pnpm format && pnpm run build && pnpm link -g",
-    "postbuild": "cpx \"src/template/**/*\" dist/template && cpx \"src/template/**/.*\" dist/template"
+    "postbuild": "cpx \"src/template/**/*\" dist/template && cpx \"src/template/**/.*\" dist/template",
+    "test": "vitest --ui"
   },
   "author": "Harsh Thakur",
   "license": "MIT",
@@ -31,8 +32,10 @@
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^22.15.20",
+    "@vitest/ui": "^3.2.3",
     "cpx": "^1.5.0",
     "tsc-alias": "^1.8.16",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.3"
   }
 }

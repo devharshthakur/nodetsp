@@ -8,11 +8,13 @@ src/
 .prettierignore
 eslint.config.mjs
 tsconfig.json
-vitest.config.ts
+vitest.config.js
 
 # Git files
 .git/
 .gitignore
+*.spec.ts
+*.spec.js
 
 # Documentation
 CONTRIBUTING.md
