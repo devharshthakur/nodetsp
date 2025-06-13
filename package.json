@@ -10,7 +10,14 @@
     "dist",
     "dist/template"
   ],
-  "keywords": [],
+  "keywords": [
+    "typescript",
+    "scaffolding",
+    "cli",
+    "project-generator",
+    "node",
+    "template"
+  ],
   "author": "Harsh Thakur",
   "license": "MIT",
   "packageManager": "pnpm@10.12.1",

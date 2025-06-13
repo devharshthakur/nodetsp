@@ -4,7 +4,6 @@
 
 [![npm version](https://img.shields.io/badge/version-2.0.0-green.svg?style=flat-square)](https://www.npmjs.com/package/nodetsp) [![license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE) [![Node.js ≥16.x](https://img.shields.io/badge/node-%3E=16.x-brightgreen.svg?style=flat-square)](https://nodejs.org/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
 
-
 ## 📋 Overview
 
 **NodeTSP** is a CLI scaffolding tool that automates the setup of Node.js projects with TypeScript, ESLint, Prettier, and Git. Spend less time on boilerplate and more time writing code.
@@ -50,22 +49,23 @@ nodetsp init my-project \
 
 ## 📋 CLI Options
 
-| Option                  | Description                                                   | Default    |
-|------------------------|---------------------------------------------------------------|------------|
-| `-p, --pm <manager>`   | Package manager: `npm` or `pnpm`                              | `npm`      |
-| `-m, --ms <system>`    | Module system: `esm` or `cjs`                                 | `esm`      |
-| `-f, --fd <folders>`   | Comma-separated extra folders: `lib,utils,config,types`        | none       |
-| `-g, --git`            | Initialize a Git repository                                   | `false`    |
-| `-v, --version`        | Display version                                               | —          |
-| `-h, --help`           | Show help                                                     | —          |
+| Option               | Description                                             | Default |
+| -------------------- | ------------------------------------------------------- | ------- |
+| `-p, --pm <manager>` | Package manager: `npm` or `pnpm`                        | `npm`   |
+| `-m, --ms <system>`  | Module system: `esm` or `cjs`                           | `esm`   |
+| `-f, --fd <folders>` | Comma-separated extra folders: `lib,utils,config,types` | none    |
+| `-g, --git`          | Initialize a Git repository                             | `false` |
+| `-v, --version`      | Display version                                         | —       |
+| `-h, --help`         | Show help                                               | —       |
 
 > **Note:**
 > The CLI uses the following flags:
+>
 > - `-p, --pm` for package manager (e.g., `--pm pnpm`)
 > - `-m, --ms` for module system (e.g., `--ms esm` or `--ms cjs`)
 > - `-f, --fd` for folders (e.g., `--fd lib,utils`)
 > - `-g, --git` to initialize a git repository
-> The long flags are two characters, not full words.
+>   The long flags are two characters, not full words.
 
 ## 📂 Generated Project Structure
 

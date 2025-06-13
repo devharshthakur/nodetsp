@@ -38,7 +38,6 @@ export async function runCli(cliArgs: Partial<CliArguments> = {}) {
         message: 'What will your project named',
         placeholder: 'my-app',
         validate: value => {
-          if (!value) return 'Please enter a project name';
           if (value.length > 30) return 'Project name must be less than 50 characters';
           return;
         },
