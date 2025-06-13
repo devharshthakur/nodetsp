@@ -4,13 +4,11 @@
     "lib": ["ES2024"],
     "moduleDetection": "force",
     "module": "NodeNext",
-    "rootDir": "src",
     "moduleResolution": "NodeNext",
     "baseUrl": ".",
     "resolveJsonModule": true,
     "allowJs": true,
     "sourceMap": true,
-    "outDir": "dist",
     "isolatedModules": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -18,11 +16,7 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "noUncheckedIndexedAccess": true,
-    "skipLibCheck": true,
-    "paths": {
-      "@/*": ["src/*"]
-    }
+    "skipLibCheck": true
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["dist", "node_modules"]
 }
