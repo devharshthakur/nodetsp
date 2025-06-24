@@ -1,8 +1,7 @@
 {
   "name": "nodetsp",
   "version": "1.0.0",
-  "description": "A tool for scaffolding project easily",
-  "main": "index.js",
+  "description": "A tool for scaffolding a nodejs based typescript project easily",
   "scripts": {
     "format": "prettier --write ."
   },

@@ -2,7 +2,7 @@ import { BaseInjector } from '@/injectors/base/index.js';
 import { ProjectOptions } from '@/types/cliArgs.js';
 import { execa } from 'execa';
 import { GitInjector } from '@/injectors/git/index.js';
-import { tasks } from '@clack/prompts';
+import { tasks, spinner } from '@clack/prompts';
 
 /**
  * Scaffolds a new TypeScript project with the specified configuration options.
@@ -37,19 +37,24 @@ export async function scaffoldProject(options: ProjectOptions) {
       },
     },
   ];
-  // When all injector are finished injecting then install dependencies
-  if (installDeps) {
-    taskList.push({
-      title: 'Installing dependencies \n',
-      task: async () => {
-        try {
-          await execa(packageManager, ['install'], { stdio: 'ignore' });
-        } catch (error) {
-          console.error('Failed to install dependencies:', error);
-          throw error; // Re-throw to let clack handle the error
-        }
-      },
-    });
-  }
+
+  // Run the scaffolding tasks first
   await tasks(taskList);
+
+  // Install dependencies with a single spinner if requested
+  if (installDeps) {
+    const s = spinner();
+    s.start('Installing dependencies');
+
+    try {
+      await execa(packageManager, ['install'], {
+        stdio: 'pipe',
+      });
+      s.stop('Dependencies installed successfully');
+    } catch (error) {
+      s.stop('Failed to install dependencies');
+      console.error('Failed to install dependencies:', error);
+      throw error;
+    }
+  }
 }

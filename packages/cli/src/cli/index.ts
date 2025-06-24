@@ -32,7 +32,7 @@ export async function runCli(cliArgs: Partial<CliArguments> = {}) {
   intro(color.magentaBright('Nodetsp CLI'));
 
   // Project Name
-  const projectName = cliArgs.projectName
+  const projectNameInput = cliArgs.projectName
     ? cliArgs.projectName
     : await text({
         message: 'What will your project named',
@@ -42,10 +42,11 @@ export async function runCli(cliArgs: Partial<CliArguments> = {}) {
           return;
         },
       });
-  if (isCancel(projectName)) {
+  if (isCancel(projectNameInput)) {
     outro('Operation cancelled');
     process.exit(0);
   }
+  const projectName = projectNameInput || 'my-app'; // So that if no input provided(User pressed enter) we take the placeholder value("my-app") here
 
   // Package Manger
   const packageManager = cliArgs.packageManager
