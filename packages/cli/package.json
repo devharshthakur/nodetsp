@@ -11,8 +11,9 @@
     "nodetsp": "dist/index.js"
   },
   "scripts": {
+    "clean": "rimraf dist",
     "dev": "tsc --watch & tsc-alias --watch",
-    "build": "tsc && tsc-alias",
+    "build": "pnpm clean && tsc && tsc-alias",
     "format": "prettier --write .",
     "load": "pnpm format && pnpm run build && pnpm link -g",
     "postbuild": "cpx \"src/template/**/*\" dist/template && cpx \"src/template/**/.*\" dist/template",
@@ -34,6 +35,7 @@
     "@types/node": "^22.15.20",
     "@vitest/ui": "^3.2.3",
     "cpx": "^1.5.0",
+    "rimraf": "^6.0.1",
     "tsc-alias": "^1.8.16",
     "typescript": "^5.8.3",
     "vitest": "^3.2.3"

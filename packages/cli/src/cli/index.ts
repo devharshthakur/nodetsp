@@ -29,7 +29,7 @@ import color from 'picocolors';
 
 export async function runCli(cliArgs: Partial<CliArguments> = {}) {
   console.clear();
-  intro(color.bgCyan('Nodetsp CLI'));
+  intro(color.bgGreen('Nodetsp CLI'));
 
   // Project Name
   const projectName = cliArgs.projectName
