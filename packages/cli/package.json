@@ -1,6 +1,6 @@
 {
   "name": "nodetsp",
-  "version": "2.0.0-beta",
+  "version": "2.0.0",
   "description": "A cli tool to create a typescript project which uses nodejs as runtime",
   "main": "dist/index.js",
   "type": "module",

@@ -1,8 +1,12 @@
+![NodeTSP Logo](assets/logo.png)
+
+
 # NodeTSP
 
 > **Kickstart your Node.js + TypeScript projects with zero configuration.**
 
 [![npm version](https://img.shields.io/badge/version-2.0.0-green.svg?style=flat-square)](https://www.npmjs.com/package/nodetsp) [![license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE) [![Node.js ≥16.x](https://img.shields.io/badge/node-%3E=16.x-brightgreen.svg?style=flat-square)](https://nodejs.org/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
+
 
 ## 📋 Overview
 
@@ -10,14 +14,14 @@
 
 ## ✨ Features
 
-- 🚀 Full ESM & modern TypeScript support
+- 🚀 Full ESM & modern TypeScript **support**
 - 🧹 Pre-configured ESLint & Prettier for consistent style
 - 🔄 Automatic Git repository initialization
 - 📁 Customizable folder structure
 - 🛠️ One-command project scaffolding
 
 ## 📦 Installation
-
+****
 ```bash
 npm install -g nodetsp
 # or
