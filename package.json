@@ -1,52 +1,28 @@
 {
   "name": "nodetsp",
-  "version": "1.0.0-beta.1",
-  "description": "A cli tool to create a typescript project which uses nodejs as runtime",
-  "main": "dist/index.js",
-  "type": "module",
-  "repository": {
-    "url": "https://github.com/devharshthakur/nodetsp.git"
-  },
-  "bin": {
-    "nodetsp": "dist/index.js"
-  },
+  "version": "1.0.0",
+  "description": "A tool for scaffolding a nodejs based typescript project easily",
   "scripts": {
-    "dev": "tsc --watch & tsc-alias --watch",
-    "build": "tsc && tsc-alias",
-    "format": "prettier --write \"**/*.{js,ts,json,md}\"",
-    "format:check": "prettier --check \"**/*.{js,ts,json,md}\"",
-    "lint": "eslint . --ext .js,.ts",
-    "lint:fix": "eslint . --ext .js,.ts --fix",
-    "prepare": "husky",
-    "test": "vitest run",
-    "test:coverage": "vitest run --coverage",
-    "load": "pnpm run build && pnpm link -g"
+    "format": "prettier --write ."
   },
+  "files": [
+    "dist",
+    "dist/template"
+  ],
+  "keywords": [
+    "typescript",
+    "scaffolding",
+    "cli",
+    "project-generator",
+    "node",
+    "template"
+  ],
   "author": "Harsh Thakur",
   "license": "MIT",
-  "packageManager": "pnpm@10.11.0",
-  "dependencies": {
-    "chalk": "^5.4.1",
-    "commander": "^14.0.0",
-    "execa": "^9.5.3",
-    "fs-extra": "^11.3.0",
-    "inquirer": "^12.6.1",
-    "ora": "^8.2.0"
-  },
+  "packageManager": "pnpm@10.13.1",
   "devDependencies": {
-    "@eslint/js": "^9.27.0",
-    "@types/fs-extra": "^11.0.4",
-    "@types/inquirer": "^9.0.8",
     "@types/node": "^22.15.20",
-    "@types/prompts": "^2.4.9",
-    "@typescript-eslint/eslint-plugin": "^8.32.1",
-    "@typescript-eslint/parser": "^8.32.1",
-    "eslint": "^9.27.0",
-    "eslint-config-prettier": "^10.1.5",
-    "husky": "^9.1.7",
-    "lint-staged": "^16.0.0",
     "prettier": "^3.5.3",
-    "tsc-alias": "^1.8.16",
     "typescript": "^5.8.3"
   }
 }

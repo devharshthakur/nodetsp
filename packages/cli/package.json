@@ -1,0 +1,43 @@
+{
+  "name": "nodetsp",
+  "version": "1.0.0",
+  "description": "A cli tool to create a typescript project which uses nodejs as runtime",
+  "main": "dist/index.js",
+  "type": "module",
+  "repository": {
+    "url": "https://github.com/devharshthakur/nodetsp.git/cli"
+  },
+  "bin": {
+    "nodetsp": "dist/index.js"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "dev": "tsc --watch & tsc-alias --watch",
+    "build": "pnpm clean && tsc && tsc-alias",
+    "format": "prettier --write .",
+    "load": "pnpm format && pnpm run build && pnpm link -g",
+    "postbuild": "cpx \"src/template/**/*\" dist/template && cpx \"src/template/**/.*\" dist/template",
+    "test": "vitest --ui"
+  },
+  "author": "Harsh Thakur",
+  "license": "MIT",
+  "packageManager": "pnpm@10.13.1",
+  "dependencies": {
+    "@clack/prompts": "^0.11.0",
+    "commander": "^14.0.0",
+    "execa": "^9.5.3",
+    "fs-extra": "^11.3.0",
+    "ora": "^8.2.0",
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^22.15.20",
+    "@vitest/ui": "^3.2.3",
+    "cpx": "^1.5.0",
+    "rimraf": "^6.0.1",
+    "tsc-alias": "^1.8.16",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.3"
+  }
+}
