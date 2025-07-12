@@ -1,6 +1,6 @@
 {
   "name": "nodetsp",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "description": "A cli tool to create a typescript project which uses nodejs as runtime",
   "main": "dist/index.js",
   "type": "module",
@@ -21,7 +21,7 @@
   },
   "author": "Harsh Thakur",
   "license": "MIT",
-  "packageManager": "pnpm@10.12.1",
+  "packageManager": "pnpm@10.13.1",
   "dependencies": {
     "@clack/prompts": "^0.11.0",
     "commander": "^14.0.0",

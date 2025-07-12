@@ -19,7 +19,7 @@
   ],
   "author": "Harsh Thakur",
   "license": "MIT",
-  "packageManager": "pnpm@10.12.1",
+  "packageManager": "pnpm@10.13.1",
   "devDependencies": {
     "@types/node": "^22.15.20",
     "prettier": "^3.5.3",
