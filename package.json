@@ -1,0 +1,33 @@
+{
+  "name": "nodetsp",
+  "version": "2.0.0",
+  "description": "A cli for creating a new typecript project",
+  "author": "Harsh Thakur <harshprojects2002@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/devharshthakur/nodetsp#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devharshthakur/nodetsp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/devharshthakur/nodetsp/issues"
+  },
+  "packageManager": "pnpm@10.26.2",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "clean": "turbo run clean && rimraf node_modules",
+    "format": "turbo run format"
+  },
+  "devDependencies": {
+    "prettier": "^3.7.4",
+    "turbo": "^2.7.2",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "rimraf": "^6.1.2"
+  }
+}
