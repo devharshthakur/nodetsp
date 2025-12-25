@@ -1,4 +1,4 @@
-# nodetsp CLI Documentation
+# nodetsp docs frontend
 
 This is the documentation project for the **nodetsp CLI**.
 
