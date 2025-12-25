@@ -1,23 +1,32 @@
-# tsdown-starter
+# nodetsp
 
-A starter for creating a TypeScript package.
+A CLI tool for quickly scaffolding TypeScript projects with customizable configurations.
 
-## Development
-
-- Install dependencies:
+## Usage
 
 ```bash
-npm install
+npx nodetsp init
 ```
 
-- Run the unit tests:
+The CLI will guide you through an interactive setup:
 
-```bash
-npm run test
-```
+- **Project name** - Name of your project
+- **Package manager** - Choose between npm, pnpm, or yarn
+- **Tooling** - Select tsc or swc compiler
+- **Module system** - Choose ESM or CJS
+- **Folders** - Optionally add config, lib, types, or utils folders
+- **Install dependencies** - Automatically install dependencies
 
-- Build the library:
+## Features
 
-```bash
-npm run build
-```
+1. Interactive CLI with beautiful prompts
+2. Support for npm, pnpm, and yarn
+3. Choice between tsc or swc compiler
+4. ESM and CJS module system support
+5. Optional folder structure customization
+6. Automatic git initialization
+7. Optional dependency installation
+
+## License
+
+This project is licensed under [MIT](../LICENSE). 
