@@ -32,5 +32,10 @@
     "bumpp": "^10.3.2",
     "tsdown": "^0.18.3",
     "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.11.0",
+    "commander": "^14.0.2",
+    "picocolors": "^1.1.1"
   }
 }
