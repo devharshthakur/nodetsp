@@ -5,6 +5,7 @@ import {
   multiselect,
   outro,
   select,
+  spinner,
   text,
 } from "@clack/prompts";
 import type {
@@ -29,7 +30,6 @@ export async function cli() {
   console.clear();
 
   intro(colors.magentaBright("nodetsp cli"));
-  outro(colors.greenBright("Project initialized successfully"));
 
   // Project name
   const projectName = handleCancel(
@@ -113,5 +113,12 @@ export async function cli() {
     installDeps,
   };
 
-  scaffold(projectConfig);
+  const s = spinner();
+  s.start("Initializing project...");
+
+  await scaffold(projectConfig);
+
+  s.stop("Project initialized successfully");
+
+  outro(colors.greenBright("Project initialized successfully"));
 }

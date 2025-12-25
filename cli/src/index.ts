@@ -1,4 +1,6 @@
+#!/usr/bin/env node
 import { Command } from "commander";
+import { cli } from "./lib/cli";
 
 const program = new Command();
 
@@ -10,6 +12,8 @@ program
 program
   .command("init")
   .description("Initialize a new TypeScript project")
-  .action(() => {
-    console.log("Initializing a new TypeScript project...");
+  .action(async () => {
+    await cli();
   });
+
+program.parse(process.argv);
