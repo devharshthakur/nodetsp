@@ -1,3 +1,10 @@
+/**
+ * @file index.ts
+ * @description Utility functions for the CLI.
+ * Contains helper methods for file system operations, template processing,
+ * git repository initialization, and package manager command generation.
+ */
+
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { readdir } from "node:fs/promises";

@@ -1,3 +1,11 @@
+/**
+ * @file scaffold.ts
+ * @description Project scaffolding engine.
+ * Responsible for creating the project structure, copying template files,
+ * setting up optional directories, and performing initial setup tasks
+ * like git initialization and dependency installation.
+ */
+
 import type { ProjectConfig } from "@/types";
 import { mkdir } from "node:fs/promises";
 import { join, dirname } from "node:path";

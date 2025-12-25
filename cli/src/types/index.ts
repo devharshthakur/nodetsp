@@ -1,5 +1,6 @@
 /**
- * Consolidated type definitions for the CLI.
+ * @file index.ts
+ * @description Consolidated type definitions for the CLI.
  * This file exports all TypeScript types and interfaces used throughout the CLI codebase.
  */
 

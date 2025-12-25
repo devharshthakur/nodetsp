@@ -1,3 +1,10 @@
+/**
+ * @file cli.ts
+ * @description Main interactive CLI logic for project initialization.
+ * Handles user prompts for project configuration including package manager,
+ * tooling, module system, and optional features using @clack/prompts.
+ */
+
 import {
   confirm,
   intro,
@@ -114,10 +121,9 @@ export async function cli() {
   };
 
   const s = spinner();
+
   s.start("Initializing project...");
-
   await scaffold(projectConfig);
-
   s.stop("Project initialized successfully");
 
   outro(colors.greenBright("Project initialized successfully"));

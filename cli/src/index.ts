@@ -1,4 +1,11 @@
 #!/usr/bin/env node
+/**
+ * @file index.ts
+ * @description Entry point for the nodetsp CLI.
+ * Configures the CLI commands, versioning, and main action handlers
+ * using the commander library.
+ */
+
 import { Command } from "commander";
 import { cli } from "./lib/cli";
 
