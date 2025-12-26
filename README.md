@@ -5,7 +5,7 @@ A CLI tool for quickly scaffolding TypeScript projects with customizable configu
 ## Usage
 
 ```bash
-npx nodetsp init
+npx nodetsp@beta init
 ```
 
 ## Features
