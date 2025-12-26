@@ -20,4 +20,4 @@ npx nodetsp init
 
 ## License
 
-This project is licensed under [MIT](../LICENSE). 
+This project is licensed under [MIT](../LICENSE).
