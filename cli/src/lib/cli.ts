@@ -24,6 +24,7 @@ import type {
 } from "@/types";
 import colors from "picocolors";
 import { scaffold } from "@/lib/scaffold";
+import pkg from "@/../package.json" assert { type: "json" };
 
 function handleCancel<T>(result: T | symbol): T {
   if (isCancel(result)) {
@@ -36,7 +37,9 @@ function handleCancel<T>(result: T | symbol): T {
 export async function cli() {
   console.clear();
 
-  intro(colors.magentaBright("nodetsp cli"));
+  intro(
+    `${colors.magentaBright("nodetsp cli")} ${colors.cyanBright(`v${pkg.version}`)}`
+  );
 
   // Project name
   const projectName = handleCancel(
