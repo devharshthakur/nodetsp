@@ -8,15 +8,6 @@ A CLI tool for quickly scaffolding TypeScript projects with customizable configu
 npx nodetsp init
 ```
 
-The CLI will guide you through an interactive setup:
-
-- **Project name** - Name of your project
-- **Package manager** - Choose between npm, pnpm, or yarn
-- **Tooling** - Select tsc or swc compiler
-- **Module system** - Choose ESM or CJS
-- **Folders** - Optionally add config, lib, types, or utils folders
-- **Install dependencies** - Automatically install dependencies
-
 ## Features
 
 1. Interactive CLI with beautiful prompts
