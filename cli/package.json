@@ -1,7 +1,7 @@
 {
   "name": "nodetsp",
   "type": "module",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0-beta.2",
   "description": "A starter for creating a TypeScript package.",
   "author": "Harsh Thakur <harshprojects2002@gmail.com>",
   "license": "MIT",
