@@ -47,7 +47,7 @@ export async function scaffold(projectConfig: ProjectConfig): Promise<void> {
     const installCommand = getInstallCommand(packageManager);
     execSync(installCommand, {
       cwd: projectDir,
-      stdio: "pipe",
+      stdio: "inherit",
     });
   }
 }

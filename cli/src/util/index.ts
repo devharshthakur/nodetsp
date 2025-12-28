@@ -48,17 +48,17 @@ export function replacePlaceholders(
 export function initGit(projectDir: string): void {
   execSync("git init -b main", {
     cwd: projectDir,
-    stdio: "pipe",
+    stdio: "inherit",
   });
   // add all files to git
   execSync("git add .", {
     cwd: projectDir,
-    stdio: "pipe",
+    stdio: "inherit",
   });
   // commit files
   execSync("git commit -m 'Initial commit'", {
     cwd: projectDir,
-    stdio: "pipe",
+    stdio: "inherit",
   });
 }
 
