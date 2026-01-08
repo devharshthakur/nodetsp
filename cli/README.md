@@ -1,27 +1,78 @@
-# nodetsp
+## @cli
 
-A CLI tool for quickly scaffolding TypeScript projects. Bun init but for nodejs, simple, elegant and have only what you need.
+This folder contains the **`CLI`** implementation.
 
-## Usage
+## Project structure
 
-Create a new TypeScript project:
-
-```bash
-npx nodetsp init
+```text
+cli/
+├── src/
+│   ├── index.ts                  # CLI entry point / command wiring
+│   ├── lib/
+│   │   ├── cli.ts               # Interactive prompts + input validation
+│   │   └── scaffold.ts          # Scaffolding flow (templates → files → setup)
+│   ├── util/
+│   │   └── index.ts             # Shared helpers (fs, git, package managers)
+│   └── types/
+│       └── index.ts             # Shared TypeScript types
+├── scripts/
+│   └── postbuild.js             # Runs after build (e.g. copies templates)
+├── templates/                    # Project templates
+├── package.json
+├── tsconfig.json
+└── README.md
 ```
 
-## Options provided by the cli
+## How the code is organized
 
-1. **Project name** - Name of your project (default: my-app)
-2. **Package manager** - Choose between pnpm, npm, or yarn
-3. **Tooling** - Choose between tsc or swc (fast rust-based compiler)
-4. **Module system** - Choose between esm or cjs
-5. **Folders** - Select optional folders: config, lib, types, utils
-6. **Install dependencies** - Whether to install dependencies after setup
+The CLI starts in `src/index.ts`, where commands are registered using `commander`. The main command users run is `nodetsp init`.
 
-> Note
-> Git will be initialized with an initial commit by default.
+User interaction lives in `src/lib/cli.ts`. It uses `@clack/prompts` to collect choices like project name, package manager, tooling, module system, and whether to install dependencies. Cancellations and invalid input are handled there so scaffolding only starts with confirmed answers.
 
-## License
+The actual generation happens in `src/lib/scaffold.ts`. Based on the selected tooling and module system, it picks a template, copies it into the target directory, replaces the `my-app` placeholder with the chosen project name, creates any optional folders under `src/`, and can also initialize git and install dependencies depending on what the user selected.
 
-This project is licensed under the MIT License.
+Common helpers are grouped in `src/util/index.ts` (file operations, placeholder replacement, git init, and figuring out the right install command). Shared types used across the CLI live in `src/types/index.ts`.
+
+## Templates
+
+Templates are split by compiler and module system:
+
+```text
+templates/
+├── tsc/
+│   ├── esm/
+│   └── cjs/
+└── swc/
+    ├── esm/
+    └── cjs/
+```
+
+When editing templates, keep using the `my-app` placeholder where you want the project name to be substituted automatically.
+
+## Build and local testing
+
+The CLI is bundled with **tsdown**. After compilation, `scripts/postbuild.js` runs to do build-time copying (for example, ensuring templates are available in the final output).
+
+To test locally:
+
+```bash
+pnpm run load
+nodetsp init
+```
+
+If you already have `nodetsp` installed globally, unlink/remove it first so you’re testing the local version.
+
+## Notes
+
+For colored terminal output, the codebase uses `picocolors`:
+
+```ts
+import colors from "picocolors";
+
+console.log(colors.greenBright("Success"));
+```
+
+## Contributing / License
+
+For contribution guidelines, see [CONTRIBUTING.md](../CONTRIBUTING.md).  
+Licensed under the MIT License.
