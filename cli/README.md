@@ -1,4 +1,4 @@
-## @cli
+# CLI
 
 This folder contains the **`CLI`** implementation.
 
