@@ -1,6 +1,8 @@
 # nodetsp
-
 A CLI tool for quickly scaffolding TypeScript projects with customizable configurations.
+
+## Overview
+The CLI provides an interactive command-line interface for creating new TypeScript projects with customizable configurations. Users can select their preferred package manager, build tooling, module system, and project structure through interactive prompts.
 
 ## Usage
 
@@ -8,16 +10,6 @@ A CLI tool for quickly scaffolding TypeScript projects with customizable configu
 npx nodetsp@beta init
 ```
 
-## Features
-
-1. Interactive CLI with beautiful prompts
-2. Support for npm, pnpm, and yarn
-3. Choice between tsc or swc compiler
-4. ESM and CJS module system support
-5. Optional folder structure customization
-6. Automatic git initialization
-7. Optional dependency installation
-
 ## License
 
-This project is licensed under [MIT](../LICENSE).
+This project is licensed under [MIT](./LICENSE).
