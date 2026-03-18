@@ -4,60 +4,59 @@ This document provides guidelines for AI coding agents working on the nodetsp pr
 
 ## Project Overview
 
-**nodetsp** is a CLI tool for scaffolding TypeScript projects with customizable configurations. It's organized as a **pnpm monorepo** with Turbo for build orchestration.
+**nodetsp** is a CLI tool for scaffolding TypeScript projects with customizable configurations. It uses **Bun** as the package manager and Turbo for build orchestration.
 
-**Workspaces:**
+**Workspace:**
 
 - `cli/` - Main CLI tool (ESM only, built with tsdown)
-- `docs/` - Next.js documentation site (not yet implemented)
 
 ## Build, Lint, and Test Commands
 
 ### Root Level (Monorepo)
 
 ```bash
-# Install dependencies (enforces pnpm 10.26.2)
-pnpm install
+# Install dependencies
+bun install
 
 # Build all workspaces
-pnpm build
+bun run build
 
 # Run dev mode for all workspaces
-pnpm dev
+bun run dev
 
 # Type checking across workspaces
-pnpm typecheck
+bun run typecheck
 
 # Format all files with Prettier
-pnpm format
+bun run format
 
 # Lint all workspaces
-pnpm lint
+bun run lint
 
 # Clean all build artifacts and node_modules
-pnpm clean
+bun run clean
 ```
 
 ### CLI Package (`cli/`)
 
 ```bash
 # Build the CLI (tsdown + postbuild)
-pnpm build
+bun run build
 
 # Watch mode development
-pnpm dev
+bun run dev
 
 # Type check without emitting
-pnpm typecheck
+bun run typecheck
 
 # Format files
-pnpm format
+bun run format
 
 # Clean dist folder
-pnpm clean
+bun run clean
 
-# Build and link globally for local testing
-pnpm load
+# Build and link for local testing
+bun run load
 
 # Test the CLI after linking
 nodetsp init
@@ -126,7 +125,7 @@ import { copyTemplateFiles, getInstallCommand } from "../util";
 **Run before committing:**
 
 ```bash
-pnpm format
+bun run format
 ```
 
 ### Types and Naming Conventions
@@ -268,7 +267,7 @@ docs(readme): update installation instructions
 
 ## Additional Notes
 
-- **Package Manager:** Always use `pnpm` (enforced via packageManager field)
+- **Package Manager:** Bun (modern, fast package manager)
 - **Build Tool:** CLI uses `tsdown` (modern TypeScript bundler)
 - **CLI Framework:** Uses `commander` for command parsing
 - **Prompts:** Uses `@clack/prompts` for interactive prompts
@@ -280,15 +279,15 @@ docs(readme): update installation instructions
 
 ```bash
 # Local development workflow
-pnpm install          # Install dependencies
-pnpm build            # Build all packages
-pnpm load             # Build and link CLI globally
+bun install           # Install dependencies
+bun run build         # Build all packages
+bun run load          # Build and link CLI globally
 nodetsp init          # Test the CLI
 
 # Before committing
-pnpm format           # Format code
-pnpm typecheck        # Check types
-pnpm build            # Ensure builds succeed
+bun run format        # Format code
+bun run typecheck     # Check types
+bun run build         # Ensure builds succeed
 ```
 
 ## Resources

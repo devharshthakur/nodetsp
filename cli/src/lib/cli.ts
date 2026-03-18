@@ -47,7 +47,7 @@ export async function cli() {
       message: "Project name",
       placeholder: "my-app",
       validate: (value) => {
-        if (value.length > 30)
+        if (value!.length > 30)
           return "Project name must be less than 30 characters";
         if (!value) return undefined;
       },

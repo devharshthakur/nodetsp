@@ -1,5 +1,5 @@
 {
-  "$schema": "https://turbo.build/schema.json",
+  "$schema": "https://turborepo.dev/schema.json",
   "globalDependencies": ["**/.env.*local"],
   "tasks": {
     "build": {
@@ -25,9 +25,12 @@
       "cache": false,
       "outputs": []
     },
+    "typecheck": {
+      "cache": false,
+      "outputs": []
+    },
     "prepublishOnly": {
       "dependsOn": ["build", "test", "lint"]
     }
   }
 }
-
